@@ -2,5 +2,5 @@
 
 A Quasar Project - version to netlify.
 
-## See demo on: 
+## See demo on Netlify: 
 
