@@ -8,6 +8,7 @@ const routes = [
       { path: '/user/:login/details', props: true, name: 'userDetails', component: () => import('pages/user/Details.vue') },
       { path: '/user/:login/repos/:repoName', props: true, name: 'repoDetails', component: () => import('pages/user/RepoDetails.vue') },
       { path: '/About', component: () => import('pages/About.vue') },
+      { path: '/test', component: () => import('pages/test.vue') },
     ]
   },
 

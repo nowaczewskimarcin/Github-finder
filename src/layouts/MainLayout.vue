@@ -7,6 +7,7 @@
           <q-route-tab to="/" label="Home" />
           <q-route-tab to="/FinderV3" label="Search user" />
           <q-route-tab to="/About" label="About" />
+          <q-route-tab to="/test" label="test" />
 
           <!-- <input rounded outlined v-model="text" style="background-color:  #d1d1d1; border: none; color: white" placeholder="Search Github" /> -->
         </q-tabs>

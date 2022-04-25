@@ -269,7 +269,7 @@ export default defineComponent({
     },
     methods: {
         getUserData() {
-            const link = `https://api.github.com/users/${this.login}`;
+            const link = `https://api.github.com/users?q=${this.login}`;
             // console.log(link)
             axios.get(link).then((response) => {
                 this.userData = response.data;
