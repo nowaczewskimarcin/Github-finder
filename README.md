@@ -1,24 +1,6 @@
 # Github-finder (github-finder)
 
-A Quasar Project
+A Quasar Project - version to netlify.
 
-## Install the dependencies
-```bash
-yarn
-# or
-npm install
-```
+## See demo on: 
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
-```bash
-quasar dev
-```
-
-
-### Build the app for production
-```bash
-quasar build
-```
-
-### Customize the configuration
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js).
