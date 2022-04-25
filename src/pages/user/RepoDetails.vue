@@ -1,12 +1,9 @@
 <template>
     <div class="q-pa-sm row items-start q-gutter-sm fixed-center" style="margin-top: 1%;">
-
         <q-card class="full-height bg-grey-3" flat bordered>
             <q-btn @click="$router.push({ name: 'userDetails', params: { login: this.login } })" flat round dense
                 icon="close" style="float: right;" />
-
             <q-card-section horizontal style="display: flex; justify-content: space-between">
-
                 <q-card-section class="q-pt-xs">
                     <div class="text-overline">Repository</div>
                     <div class="text-h5 q-mt-sm q-mb-xs" style="text-decoration: underline;">{{ repos.name }}</div>
@@ -20,16 +17,13 @@
                     </div>
                     <q-separator color="green" inset />
                 </q-card-section>
-
                 <q-card-section flat class="col-5 flex flex-center" align="right"
                     style="margin-bottom: -30px; margin-right: 0;">
                     <q-avatar size="186px">
                         <img :src="userAvatar" />
                     </q-avatar>
                 </q-card-section>
-
             </q-card-section>
-
             <p>
                 <a :href="linkToProfile" style="color: green; font-weight: 900; margin-left: 30px;" target="_blank">
                     <q-avatar>
@@ -39,7 +33,6 @@
                     Click to see this repo on GITHUB!
                 </a>
             </p>
-
             <q-separator />
             <q-card-section class="q-pt-none text-subtitle2">
                 <p><span style="color: black;  font-weight: 700">ID: <span class="text-subtitle2 text-grey">{{
@@ -72,12 +65,8 @@
                 <p><span style="color: black;  font-weight: 700">License: <span class="text-subtitle2 text-grey">{{
                         repos.license
                 }}</span></span></p>
-
-
             </q-card-section>
-
         </q-card>
-
     </div>
 </template>
 
@@ -93,7 +82,6 @@ export default defineComponent({
             reposOwner: [],
             userAvatar: "",
             linkToProfile: "",
-
         })
     },
     methods: {

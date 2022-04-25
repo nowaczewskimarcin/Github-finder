@@ -1,42 +1,16 @@
 <template>
-    <q-page padding
-        style="background: linear-gradient(90deg, rgba(2,0,36,1) 3%, rgba(8,8,108,1) 18%, rgba(9,9,121,1) 85%, rgba(158,0,255,1) 117%); color: white; width: 100%;">
+    <q-page padding>
         <div class="column center justify-center box" style="margin-top: 10%; width: 80%">
-            <!-- <q-select
-            v-model="selectedValue"
-            :options="options"
-            label="Standout"
-            @update:model-value="onValueChange"
-        >
-            <template v-slot:selected-item="scope">
-                <q-item>
-                    <q-item-section avatar>
-                        <q-avatar>
-                            <img :src="scope.opt.avatar_url" />
-                        </q-avatar>
-                    </q-item-section>
-                    <q-item-section>{{ scope.opt.login }}</q-item-section>
-                </q-item>
-            </template>
 
-            <template v-slot:option="scope">
-                <q-item v-bind="scope.itemProps">
-                    <q-item-section avatar>
-                        <q-avatar>
-                            <img :src="scope.opt.avatar_url" />
-                        </q-avatar>
-                    </q-item-section>
-                    <q-item-section>{{ scope.opt.login }}</q-item-section>
-                </q-item>
-            </template>
-            </q-select>-->
-            <q-input v-model="inputValue" filled type="search" textfield="grey-1" label-color="grey-1" standout="grey-1"
-                :input-style="{ color: 'white' }" bg-color="green-6" debounce="500" label="SEARCH USER FROM GITHUB API">
+            <q-input v-model="inputValue" @update:model-value="getUser" filled type="search" textfield="grey-1"
+                label-color="grey-1" standout="grey-1" :input-style="{ color: 'white' }" bg-color="green-6"
+                debounce="1000" label="SEARCH USER FROM GITHUB API">
             </q-input>
 
             <div v-if="inputValue">
-                <ul>
-                    <li @click="selectItem(user)" v-for="(user, index) in filteredUser" :key="`user-${index}`">
+                <ul style="color: white;">
+                    Results: {{ total }}
+                    <li v-for="(user, index) in userArray" :key="`item-${index}`" @click="selectItem(user)">
                         <q-item clickable v-ripple>
                             <q-item-section side>
                                 <q-avatar rounded size="65px">
@@ -44,12 +18,11 @@
                                 </q-avatar>
                             </q-item-section>
                             <q-item-section>
-                                <q-item-label>{{ user.login }}</q-item-label>
+                                <q-item-label> {{ user.login }}</q-item-label>
                             </q-item-section>
                         </q-item>
                     </li>
                 </ul>
-
             </div>
         </div>
     </q-page>
@@ -63,42 +36,30 @@ export default defineComponent({
     data() {
         return {
             inputValue: "",
-            userArray: [],
+            userArray: "",
             isVisible: false,
             selectedItem: null,
             selectedValue: null,
+            total: "",
         };
     },
     methods: {
-        // onValueChange(aaaaa) {
-        //     this.$router.push({ name: 'userDetails', params: { login: this.selectedValue.login } })
-        // },
+
         selectItem(user) {
             this.selectedItem = user;
             console.log(user)
             this.$router.push({ name: 'userDetails', params: { login: this.selectedItem.login } })
         },
-    },
-    computed: {
-        filteredUser() {
-            const query = this.inputValue.toLowerCase();
-            if (this.inputValue === "") {
-                return this.userArray;
-            }
-            return this.userArray.filter((user) => {
-                return Object.values(user).some((word) =>
-                    String(word).toLocaleLowerCase().includes(query)
-                );
-            })
+        getUser() {
+            fetch(`https://api.github.com/search/users?q=${this.inputValue}`)
+                .then(res => res.json())
+                .then((json) => {
+
+                    this.total = json.total_count;
+                    this.userArray = json.items;
+                    console.log(json.items);
+                });
         },
-    },
-    mounted() {
-        fetch(`https://api.github.com/users?q=${this.inputValue}`)
-            .then(res => res.json())
-            .then((json) => {
-                console.log(json);
-                this.userArray = json;
-            })
     },
     props: {
         login: {
@@ -106,9 +67,8 @@ export default defineComponent({
             type: String,
         }
     },
-
 })
-</script>  
+</script>  s
 
 <style scoped>
 input,

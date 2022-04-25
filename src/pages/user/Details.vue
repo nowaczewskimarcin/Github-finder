@@ -16,11 +16,9 @@
                                 </p>
                             </div>
                         </q-item-section>
-
                         <q-avatar rounded size="200px">
                             <img :src="avatarUser">
                         </q-avatar>
-
                     </q-item>
                     <div>
                         <q-chip>
@@ -37,10 +35,7 @@
                         <q-btn flat>
                             <a target="_blank" :href="linkToProfile">See on github</a>
                         </q-btn>
-
                         <q-btn @click="$router.replace('/FinderV3')" icon="reply" label="Back to search" />
-
-
                     </q-card-actions>
                 </q-card-section>
             </q-card>
@@ -89,7 +84,6 @@
             </q-card>
             <q-slide-transition>
                 <q-card class="my-card details qp-tb-none bg-grey-3" v-show="hide">
-
                     <q-card-section horizontal>
                         <q-card-section class="text-caption" style="width: 50%">
                             <p>
@@ -118,9 +112,7 @@
                                 {{ location }}
                             </p>
                         </q-card-section>
-
                         <q-separator vertical />
-
                         <q-card-section class="text-caption" style="width: 50%">
                             <p>
                                 <q-icon color="positive" size="md" name="public"> </q-icon>
@@ -139,100 +131,16 @@
                             <p>
                                 <q-icon color="positive" size="md" name="link"> </q-icon>
                                 <strong>Link to Github:</strong>
-
                                 <a :href="linkToProfile" style="color: green" target="_blank">Go to github</a>
                             </p>
 
-
                         </q-card-section>
-
-
                     </q-card-section>
-
                     <q-btn class="full-width" @click="toggleRepositories">Show Repositories</q-btn>
-
                 </q-card>
             </q-slide-transition>
         </div>
     </q-page>
-
-
-
-
-    <!-- <div class="q-pa-md row items-start q-gutter-md">
-            <div>
-                <img class="col" :src="avatarUser" />
-                <div class="text-h6">{{ name }}</div>
-                <div class="text-subtitle1">login: {{ login }}</div>
-                <div class="text-subtitle3"> <br>
-                    <p v-if="name">About {{ name }}:</p>
-                    <p v-if="bio">{{ bio }}</p>
-                    <p v-else="bio"> user not add desription yet</p>
-                </div>
-                <div>
-                    <div class="q-pa-md q-gutter-y-md">
-                        <div class="q-gutter-sm" justify-evenly>
-                            <q-chip>
-                                <q-avatar color="positive" text-color="white"> {{ followers }}</q-avatar>
-                                Followers
-                            </q-chip>
-                            <q-chip>
-                                <q-avatar color="positive" text-color="white"> {{ following }}</q-avatar>
-                                Following
-                            </q-chip>
-
-                        </div>
-                    </div>
-                </div>
-                <q-btn-actions align="around" class="q-pa-md ">
-                    <q-btn flat @click="toggleDetails">{{ hide ? 'Hide' : 'Show' }} More Info</q-btn>
-                    <q-btn flat>
-                        <a target="_blank" :href="linkToProfile">See on github</a>
-                    </q-btn>
-                    <q-btn @click="$router.replace('/FinderV3')" flat round dense bg-color="blue-10" icon="close" />
-                </q-btn-actions>
-            </div> -->
-
-    <!-- <q-card class="my-card">
-        <q-card-section horizontal>
-            <q-img class="col" :src="avatarUser" />
-        </q-card-section>
-        <q-card-section>
-            <div class="text-h6">{{ name }}</div>
-            <div class="text-subtitle1">login: {{ login }}</div>
-            <div class="text-subtitle3">
-                <br>
-                <p v-if="name">About {{ name }}:</p>
-                <p v-if="bio">{{ bio }}</p>
-                <p v-else="bio">About: user not add desription yet</p>
-            </div>
-            <q-card-section align="around">
-                <q-chip>
-                    <q-avatar color="positive" text-color="white"> {{ followers }}</q-avatar>
-                    Followers
-                </q-chip>
-                <q-chip>
-                    <q-avatar color="positive" text-color="white"> {{ following }}</q-avatar>
-                    Following
-                </q-chip>
-            </q-card-section>
-        </q-card-section>
-
-
-        <div class="row justify-center">
-            <q-card-actions align="left">
-                <q-btn flat @click="toggleDetails">{{ hide ? 'Hide' : 'Show' }} More Info</q-btn>
-                <q-btn flat>
-                    <a target="_blank" :href="linkToProfile">See on github</a>
-                </q-btn>
-                <q-btn @click="$router.replace('/FinderV3')" flat round dense bg-color="blue-10" icon="close"
-                    style="float: right;" />
-            </q-card-actions>
-        </div>
-    </q-card> -->
-
-
-
 </template>
 
 <script>
@@ -264,12 +172,11 @@ export default defineComponent({
             hideRepo: false,
             showDialog: false,
             showDialogRepo: false,
-
         })
     },
     methods: {
         getUserData() {
-            const link = `https://api.github.com/users?q=${this.login}`;
+            const link = `https://api.github.com/users/${this.login}`;
             // console.log(link)
             axios.get(link).then((response) => {
                 this.userData = response.data;
@@ -294,7 +201,6 @@ export default defineComponent({
                 axios.get(linkRepo).then((response) => {
                     this.repos = response.data;
                     console.log(response.data)
-
                 });
             });
         },
@@ -311,7 +217,6 @@ export default defineComponent({
             this.$router.push({ name: 'RepoDetailsView', props: { id: repo.id } })
         }
     },
-
     props: {
         login: {
             required: true,
@@ -327,7 +232,6 @@ export default defineComponent({
             },
         }
     },
-
 })
 </script>
 
@@ -387,7 +291,6 @@ a {
 td,
 th {
     border: 1px solid black;
-
 }
 
 tr:hover {
