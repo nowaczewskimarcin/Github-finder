@@ -95,7 +95,6 @@ export default defineComponent({
                 console.log(response.data)
             });
         },
-        ///// ???????
         nextRepo() {
             this.$router.push({ name: 'RepoDetails', params: { repoName: repo.name + 1, login: login } })
         },

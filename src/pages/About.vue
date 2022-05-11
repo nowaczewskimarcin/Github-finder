@@ -37,6 +37,7 @@
                         <li>REST API</li>
                         <li>Git</li>
                         <li>GitHub</li>
+                        <li>Netlify</li>
                     </ul>
                 </q-card-section>
             </q-card>

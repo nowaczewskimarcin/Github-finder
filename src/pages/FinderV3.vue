@@ -54,7 +54,6 @@ export default defineComponent({
             fetch(`https://api.github.com/search/users?q=${this.inputValue}`)
                 .then(res => res.json())
                 .then((json) => {
-
                     this.total = json.total_count;
                     this.userArray = json.items;
                     console.log(json.items);
@@ -68,7 +67,7 @@ export default defineComponent({
         }
     },
 })
-</script>  s
+</script>  
 
 <style scoped>
 input,
